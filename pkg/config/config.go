@@ -13,7 +13,6 @@ type Config struct {
 	Name        string
 	Environment string
 	Version     string
-	Kafka       KafkaConfig
 	// Add package configs under here
 	HTTP HTTPConfig
 	URLS URLConfig
@@ -42,7 +41,6 @@ func (cfg *Config) LoadConfig() error {
 	// Loading extra package configurations
 	cfg.HTTP = cfg.loadHTTPConfig()
 	cfg.URLS = cfg.loadURLConfig()
-	cfg.Kafka = cfg.loadKafkaConfig()
 	return nil
 }
 
