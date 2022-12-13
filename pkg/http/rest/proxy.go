@@ -3,6 +3,7 @@ package rest
 import (
 	"Gateway/pkg/config"
 	"Gateway/pkg/http/rest/handlers"
+	"fmt"
 	"net/http"
 	"net/http/httputil"
 	"net/url"
@@ -28,6 +29,7 @@ func CreateReverseProxy() func(w http.ResponseWriter, r *http.Request) {
 			handlers.RenderResponse(w, http.StatusNotFound, "route not found")
 			return
 		}
+		fmt.Printf("proxying : %v\n", host)
 		Proxy(host).ServeHTTP(w, r)
 	}
 }
