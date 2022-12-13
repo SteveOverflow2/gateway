@@ -12,17 +12,11 @@ import (
 )
 
 var (
-	CouponsURL string
-	BrandURL   string
-	ImportURL  string
-	UserURL    string
+	PostURL string
 )
 
 func InitUrls(cfg config.URLConfig) {
-	CouponsURL = cfg.CouponsURL
-	BrandURL = cfg.BrandURL
-	ImportURL = cfg.ImportURL
-	UserURL = cfg.UserURL
+	PostURL = cfg.PostURL
 }
 func CreateReverseProxy() func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
@@ -48,14 +42,8 @@ func GenerateAddr(targetAddr string, urlParts string) string {
 
 func getTargetAddress(hostName string) string {
 	switch hostName {
-	case "brands":
-		return BrandURL
-	case "import":
-		return ImportURL
-	case "user":
-		return UserURL
-	case "coupons":
-		return CouponsURL
+	case "posts":
+		return PostURL
 	default:
 		return ""
 	}
