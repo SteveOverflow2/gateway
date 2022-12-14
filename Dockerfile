@@ -24,7 +24,7 @@ RUN set -x && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -
 COPY --from=builder /app/server /app/server
 
 # Expose ports
-EXPOSE 8080
+EXPOSE 8088
 
 # Run the web service on container startup.
 CMD ["/app/server"]
