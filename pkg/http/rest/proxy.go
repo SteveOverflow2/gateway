@@ -26,11 +26,18 @@ func CreateReverseProxy() func(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		if host.Scheme == "" {
+			fmt.Printf("r.Host: %v\n", r.Host+r.URL.Path)
 			handlers.RenderResponse(w, http.StatusNotFound, "route not found")
 			return
 		}
 		fmt.Printf("proxying : %v\n", host)
 		Proxy(host).ServeHTTP(w, r)
+	}
+}
+
+func PrintRequest() func(w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		fmt.Printf("r.Host: %v\n", r.Host)
 	}
 }
 
