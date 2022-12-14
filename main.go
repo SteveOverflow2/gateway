@@ -24,6 +24,8 @@ func run() error {
 	}
 
 	server := rest.NewServer(cfg, cfg.Environment)
+	fmt.Printf("%v\n", "Oh wow the service is online")
+
 	server.Init()
 
 	server.Run(cfg.Name)
