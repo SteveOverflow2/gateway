@@ -27,7 +27,7 @@ spec:
             name: gateway-config
         name: "gateway-sha256-1"
         image: "gcr.io/steveoverflow-289df/gateway:latest"
-        imagePullPolicy: always
+        imagePullPolicy: Always
 ---
 apiVersion: "autoscaling/v2"
 kind: "HorizontalPodAutoscaler"
