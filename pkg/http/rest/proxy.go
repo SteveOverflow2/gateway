@@ -34,6 +34,7 @@ func CreateReverseProxy() func(w http.ResponseWriter, r *http.Request) {
 		Proxy(host).ServeHTTP(w, r)
 	}
 }
+
 func PrintRequest() func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		fmt.Printf("r.Host: %v\n", r.Host)
