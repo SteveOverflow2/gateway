@@ -28,8 +28,8 @@ func CreateReverseProxy() func(w http.ResponseWriter, r *http.Request) {
 			handlers.RenderResponse(w, http.StatusTeapot, err.Error())
 			return
 		}
-		if host.Scheme == "" {
-			fmt.Printf("No SCHEME found for : %v\n", r.Host+r.URL.Path)
+		if host.Path == "" {
+			fmt.Printf("No path found for : %v\n", r.Host+r.URL.Path)
 			handlers.RenderResponse(w, http.StatusNotFound, "route not found")
 			return
 		}
