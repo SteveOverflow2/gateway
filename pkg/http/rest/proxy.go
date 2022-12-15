@@ -24,10 +24,12 @@ func CreateReverseProxy() func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		host, err := url.Parse(GenerateAddr(getTargetAddress(mux.Vars(r)["service"]), r.URL.Path))
 		if err != nil {
+			fmt.Printf("Creating URL went wrong : %v\n", err)
+			handlers.RenderResponse(w, http.StatusTeapot, err.Error())
 			return
 		}
 		if host.Scheme == "" {
-			fmt.Printf("r.Host: %v\n", r.Host+r.URL.Path)
+			fmt.Printf("No SCHEME found for : %v\n", r.Host+r.URL.Path)
 			handlers.RenderResponse(w, http.StatusNotFound, "route not found")
 			return
 		}
