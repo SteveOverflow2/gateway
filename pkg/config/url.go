@@ -11,6 +11,6 @@ func (cfg *Config) loadURLConfig() URLConfig {
 	fmt.Println("Getting URL CONF")
 	envFields := cfg.loadEnvFields(URLConfig{})
 	return URLConfig{
-		PostURL: envFields["POST_URL"],
+		PostURL: envFields["PostURL"],
 	}
 }
