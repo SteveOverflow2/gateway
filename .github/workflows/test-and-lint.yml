@@ -16,7 +16,7 @@ on:
 
 env:
   PROJECT_ID: steveoverflow-289df 
-  GKE_CLUSTER: cluster-overflow    # Add your cluster name here.
+  GKE_CLUSTER: cluster-1    # Add your cluster name here.
   GKE_ZONE: europe-west1-b    # Add your cluster zone here.
   DEPLOYMENT_NAME: gateway # Add your deployment name here.
   IMAGE: gateway
