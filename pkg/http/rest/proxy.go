@@ -54,8 +54,10 @@ func GenerateAddr(targetAddr string, urlParts string) string {
 }
 
 func getTargetAddress(hostName string) string {
+	fmt.Printf("checking hostName: %v\n", hostName)
 	switch hostName {
 	case "posts":
+		fmt.Printf("Returning URL: %v\n", PostURL)
 		return PostURL
 	default:
 		return ""
