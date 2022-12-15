@@ -53,6 +53,7 @@ func GenerateAddr(targetAddr string, urlParts string) string {
 	for i := 1; i < len(parts); i++ {
 		targetAddr += "/" + parts[i]
 	}
+	fmt.Printf("targetAddr: %v\n", targetAddr)
 	return targetAddr
 }
 
