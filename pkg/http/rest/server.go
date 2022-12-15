@@ -27,7 +27,8 @@ const serverLog string = "[Server]: "
 
 func NewServer(cfg *config.Config, env string) *server {
 	baseUrl := fmt.Sprintf("%s:%s", cfg.HTTP.Host, cfg.HTTP.Port)
-
+	fmt.Printf("cfg.HTTP: %v\n", cfg.HTTP)
+	fmt.Printf("cfg.URLS: %v\n", cfg.URLS)
 	s := &server{
 		environment: env,
 		Server: &http.Server{
