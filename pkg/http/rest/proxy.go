@@ -17,6 +17,7 @@ var (
 )
 
 func InitUrls(cfg config.URLConfig) {
+	fmt.Printf("Setting URL as: %v\n", cfg.PostURL)
 	PostURL = cfg.PostURL
 }
 func CreateReverseProxy() func(w http.ResponseWriter, r *http.Request) {
