@@ -14,8 +14,9 @@ type Config struct {
 	Environment string
 	Version     string
 	// Add package configs under here
-	HTTP HTTPConfig
-	URLS URLConfig
+	HTTP   HTTPConfig
+	URLS   URLConfig
+	Rabbit RabbitMQ
 }
 
 func NewConfig() *Config {
@@ -41,6 +42,7 @@ func (cfg *Config) LoadConfig() error {
 	// Loading extra package configurations
 	cfg.HTTP = cfg.loadHTTPConfig()
 	cfg.URLS = cfg.loadURLConfig()
+	cfg.Rabbit = cfg.loadRabbitMQConfig()
 	return nil
 }
 

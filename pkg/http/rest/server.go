@@ -19,6 +19,7 @@ type server struct {
 	environment string
 	HTTPcfg     config.HTTPConfig
 	URLcfg      config.URLConfig
+	Rabbitcfg   config.RabbitMQ
 	Server      *http.Server
 	Router      *mux.Router
 }

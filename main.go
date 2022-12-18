@@ -3,6 +3,7 @@ package main
 import (
 	"Gateway/pkg/config"
 	"Gateway/pkg/http/rest"
+	"Gateway/pkg/rabbitmq"
 	"errors"
 	"fmt"
 	"os"
@@ -25,7 +26,7 @@ func run() error {
 
 	server := rest.NewServer(cfg, cfg.Environment)
 	fmt.Printf("%v\n", "Oh wow the service is online")
-
+	rabbitmq.StartServer(cfg.Rabbit)
 	server.Init()
 
 	server.Run(cfg.Name)
