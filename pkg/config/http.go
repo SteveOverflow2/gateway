@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"log"
 	"time"
 )
@@ -17,6 +18,7 @@ const httpLog string = "[HTTP - Config]: "
 
 // Gets all values from the environment.
 func (cfg *Config) loadHTTPConfig() HTTPConfig {
+	fmt.Println("GETTING HTTP CONF")
 	envFields := cfg.loadEnvFields(HTTPConfig{})
 
 	writeTimeOut, err := time.ParseDuration(envFields["WriteTimeOut"])

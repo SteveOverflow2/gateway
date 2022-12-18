@@ -17,17 +17,15 @@ var (
 )
 
 func InitUrls(cfg config.URLConfig) {
+	fmt.Printf("Setting URL as: %v\n", cfg.PostURL)
 	PostURL = cfg.PostURL
 }
 func CreateReverseProxy() func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		host, err := url.Parse(GenerateAddr(getTargetAddress(mux.Vars(r)["service"]), r.URL.Path))
 		if err != nil {
-			return
-		}
-		if host.Scheme == "" {
-			fmt.Printf("r.Host: %v\n", r.Host+r.URL.Path)
-			handlers.RenderResponse(w, http.StatusNotFound, "route not found")
+			fmt.Printf("Creating URL went wrong : %v\n", err)
+			handlers.RenderResponse(w, http.StatusTeapot, err.Error())
 			return
 		}
 		fmt.Printf("proxying : %v\n", host)
@@ -50,6 +48,7 @@ func GenerateAddr(targetAddr string, urlParts string) string {
 	for i := 1; i < len(parts); i++ {
 		targetAddr += "/" + parts[i]
 	}
+	fmt.Printf("targetAddr: %v\n", targetAddr)
 	return targetAddr
 }
 
