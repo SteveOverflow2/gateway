@@ -45,7 +45,7 @@ func SendMessage() func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 		defer cancel()
-
+		ctx = context.WithValue(ctx, "Subject", "123")
 		body, err := ioutil.ReadAll(r.Body)
 		if err != nil {
 			fmt.Printf("the err was: %v\n", err)
