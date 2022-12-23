@@ -4,6 +4,7 @@ import (
 	"Gateway/pkg/config"
 	"context"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"time"
@@ -45,15 +46,18 @@ func SendMessage() func(w http.ResponseWriter, r *http.Request) {
 		ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 		defer cancel()
 
-		body := "This is a test"
-		err := ch.PublishWithContext(ctx,
+		body, err := ioutil.ReadAll(r.Body)
+		if err != nil {
+			fmt.Printf("the err was: %v\n", err)
+		}
+		err = ch.PublishWithContext(ctx,
 			"",     // exchange
 			q.Name, // routing key
 			false,  // mandatory
 			false,  // immediate
 			amqp.Publishing{
 				ContentType: "text/plain",
-				Body:        []byte(body),
+				Body:        body,
 			})
 		failOnError(err, "Failed to publish a message")
 		log.Printf(" [x] Sent %s\n", body)
