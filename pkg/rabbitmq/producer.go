@@ -50,6 +50,7 @@ func SendMessage() func(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			fmt.Printf("the err was: %v\n", err)
 		}
+
 		err = ch.PublishWithContext(ctx,
 			"",     // exchange
 			q.Name, // routing key
@@ -58,7 +59,7 @@ func SendMessage() func(w http.ResponseWriter, r *http.Request) {
 			amqp.Publishing{
 				ContentType: "text/plain",
 				Body:        body,
-				UserId:      "123",
+				Headers:     amqp.Table{"Subject": "123"},
 			})
 		failOnError(err, "Failed to publish a message")
 
