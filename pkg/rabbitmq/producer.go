@@ -58,6 +58,7 @@ func SendMessage() func(w http.ResponseWriter, r *http.Request) {
 			amqp.Publishing{
 				ContentType: "text/plain",
 				Body:        body,
+				UserId:      "123",
 			})
 		failOnError(err, "Failed to publish a message")
 		log.Printf(" [x] Sent %s\n", body)
