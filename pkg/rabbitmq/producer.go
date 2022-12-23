@@ -10,6 +10,7 @@ import (
 
 func StartServer(cfg config.RabbitMQ) {
 	fmt.Println("Starting rabbitmq")
+	fmt.Println(cfg.Host + ":" + cfg.Port)
 	conn, err := amqp.Dial("amqp://guest:guest@" + cfg.Host + ":" + cfg.Port)
 	fmt.Println("Done dialing")
 	failOnError(err, "Failed to connect to RabbitMQ")
