@@ -36,14 +36,14 @@ spec:
 apiVersion: "autoscaling/v2"
 kind: "HorizontalPodAutoscaler"
 metadata:
-  name: "post-service-hpa-yrnk"
+  name: "gateway-hpa-yrnk"
   namespace: "steve-overflow"
   labels:
-    app: "post-service"
+    app: "gateway"
 spec:
   scaleTargetRef:
     kind: "Deployment"
-    name: "post-service"
+    name: "gateway"
     apiVersion: "apps/v1"
   minReplicas: 2
   maxReplicas: 5
