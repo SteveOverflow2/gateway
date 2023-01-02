@@ -29,8 +29,8 @@ spec:
           image: "gcr.io/steveoverflow-289df/gateway:latest"
           imagePullPolicy: Always
           resources:
-          limits:
-            cpu: "0.05"
+            limits:
+              cpu: "0.05"
 
 ---
 apiVersion: "autoscaling/v2"
