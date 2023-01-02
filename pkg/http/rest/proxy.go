@@ -39,7 +39,6 @@ func PrintRequest() func(w http.ResponseWriter, r *http.Request) {
 		fmt.Printf("r.Host: %v\n", r.Host)
 		fmt.Println("404 came in")
 		fmt.Println("---------------------------------------------")
-
 	}
 }
 
