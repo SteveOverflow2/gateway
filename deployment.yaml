@@ -28,25 +28,29 @@ spec:
           name: "gateway-sha256-1"
           image: "gcr.io/steveoverflow-289df/gateway:latest"
           imagePullPolicy: Always
+          resources:
+          limits:
+            cpu: "0.05"
+
 ---
 apiVersion: "autoscaling/v2"
 kind: "HorizontalPodAutoscaler"
 metadata:
-  name: "gateway-hpa-yrnk"
+  name: "post-service-hpa-yrnk"
   namespace: "steve-overflow"
   labels:
-    app: "gateway"
+    app: "post-service"
 spec:
   scaleTargetRef:
     kind: "Deployment"
-    name: "gateway"
+    name: "post-service"
     apiVersion: "apps/v1"
-  minReplicas: 1
+  minReplicas: 2
   maxReplicas: 5
   metrics:
-    - type: "Resource"
-      resource:
-        name: "cpu"
-        target:
-          type: "Utilization"
-          averageUtilization: 80
+  - type: "Resource"
+    resource:
+      name: "cpu"
+      target:
+        type: "Utilization"
+        averageUtilization: 25
