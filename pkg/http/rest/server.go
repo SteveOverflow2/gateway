@@ -12,6 +12,7 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
+	"github.com/rs/cors"
 )
 
 type server struct {
@@ -57,6 +58,8 @@ func (s *server) Init() {
 
 func (s *server) Run(name string) {
 	var wait time.Duration
+
+	s.Server.Handler = cors.AllowAll().Handler(s.Router)
 
 	go func() {
 		if err := s.Server.ListenAndServe(); err != nil {
