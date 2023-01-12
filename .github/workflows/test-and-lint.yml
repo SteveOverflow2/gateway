@@ -74,7 +74,7 @@ jobs:
       run: |-
         ./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/steveoverflow-289df/gateway:latest
         ./kustomize build . | kubectl apply -f -
-        kubectl rollout status deployment/gateway --namespace steve-overflow
+        kubectl rollout restart deployment/gateway --namespace steve-overflow
         kubectl get services -o wide --namespace steve-overflow
 
 
