@@ -59,7 +59,7 @@ func (s *server) Init() {
 func (s *server) Run(name string) {
 	var wait time.Duration
 
-	s.Server.Handler = cors.Default().Handler(s.Router)
+	s.Server.Handler = cors.AllowAll().Handler(s.Router)
 
 	go func() {
 		if err := s.Server.ListenAndServe(); err != nil {
