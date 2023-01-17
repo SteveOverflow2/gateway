@@ -13,12 +13,14 @@ import (
 )
 
 var (
-	PostURL string
+	PostURL     string
+	ResponseURL string
 )
 
 func InitUrls(cfg config.URLConfig) {
 	fmt.Printf("Setting URL as: %v\n", cfg.PostURL)
 	PostURL = cfg.PostURL
+	ResponseURL = cfg.ResponseURL
 }
 func CreateReverseProxy() func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
@@ -58,6 +60,9 @@ func getTargetAddress(hostName string) string {
 	case "posts":
 		fmt.Printf("Returning URL: %v\n", PostURL)
 		return PostURL
+	case "response":
+		fmt.Printf("Returning URL: %v\n", ResponseURL)
+		return ResponseURL
 	default:
 		return ""
 	}
